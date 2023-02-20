@@ -1,12 +1,17 @@
 // Documentation
 // https://www.npmjs.com/package/graphql-request
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { gql, GraphQLClient } from 'graphql-request'
 
+import { Videos } from '../graphql'
+
+import Video from './Video/Video';
 
 function App() {
-  const getData = async () => {
+  const [videos, setVideos] = useState<Videos[] | null>(null)
+
+  const getAllVideosData = async () => {
     const url: string = process.env.REACT_APP_GRAPH_CMS_ENDPOINT!
     const token: string = process.env.REACT_APP_GRAPH_CMS_TOKEN!
 
@@ -26,19 +31,19 @@ function App() {
       }
     `
     const data = await client.request(query)
-    const { videos } = data
-
-    console.log(videos)
-
-    return
+    setVideos(data.videos)
   }
 
-  getData()
-
+  useEffect(() => {
+    getAllVideosData()
+  }, [])
+  
+  console.log(videos)
 
   return (
-    <div className="App">
+    <div>
       Hello World
+      <Video/>
     </div>
   );
 }
