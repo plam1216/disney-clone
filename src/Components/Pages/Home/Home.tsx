@@ -4,14 +4,17 @@ import { Video } from '../../../../graphql'
 
 import Section from '../../Section/Section'
 
+import getUnseenVideos from '../../../hooks/getUnseenVideos'
+import filterVideoByGenre from '../../../hooks/filterVideoByGenre'
+import getRandomVideo from '../../../hooks/getRandomVideo'
 
 interface HomeProps {
-    randomVideo: Video
-    getUnseenVideos: () => Video[]
-    filterVideoByGenre: (genre: string) => Video[]
+    videos: Video[]
 }
 
-const Home = ({ randomVideo, getUnseenVideos, filterVideoByGenre }: HomeProps) => {
+const Home = ({ videos }: HomeProps) => {
+    const randomVideo = getRandomVideo(videos)
+    
     return (
         <div className="app">
             <div className="main-video">
@@ -24,11 +27,11 @@ const Home = ({ randomVideo, getUnseenVideos, filterVideoByGenre }: HomeProps) =
             </div>
 
             <div className="video-feed">
-                <Section genre={"recommended"} videos={getUnseenVideos()} />
-                <Section genre={"classic"} videos={filterVideoByGenre("classic")} />
-                <Section genre={"family"} videos={filterVideoByGenre("family")} />
-                <Section genre={"action"} videos={filterVideoByGenre("action")} />
-                <Section genre={"drama"} videos={filterVideoByGenre("drama")} />
+                <Section genre={"recommended"} videos={getUnseenVideos(videos)} />
+                <Section genre={"classic"} videos={filterVideoByGenre(videos, "classic")} />
+                <Section genre={"family"} videos={filterVideoByGenre(videos, "family")} />
+                <Section genre={"action"} videos={filterVideoByGenre(videos, "action")} />
+                <Section genre={"drama"} videos={filterVideoByGenre(videos, "drama")} />
             </div>
         </div>
     )

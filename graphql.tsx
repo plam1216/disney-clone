@@ -19,6 +19,5 @@ export interface Platform {
 export interface Account {
     id: string,
     username: string
-    avatar: string
-    platform: Platform
+    avatar: { url: string }
 }
