@@ -75,10 +75,9 @@ function App() {
     `
 
     const accountData = await client.request(accountQuery)
-    setAccount(accountData)
+    setAccount(accountData.account)
   }
 
-  console.log(account)
 
   useEffect(() => {
     getAccountData()
@@ -87,7 +86,9 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar 
+        account={account}
+      />
       <Switch>
         <Route
           exact path='/'
