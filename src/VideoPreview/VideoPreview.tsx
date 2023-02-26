@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { gql, GraphQLClient } from 'graphql-request'
 import { Video } from '../../graphql';
 
+import changeToSeen from '../hooks/changeToSeen';
+
 
 interface RouteParams {
   slug: string
@@ -75,6 +77,7 @@ const VideoPreview = () => {
   }, [])
 
   console.log("videoData", videoData)
+  console.log("slug", slug)
 
   return (
     <>
@@ -88,6 +91,7 @@ const VideoPreview = () => {
         <button
           className={"video-overlay"}
           onClick={() => {
+            changeToSeen(slug)
             watching ? setWatching(false) : setWatching(true)
           }}
         >PLAY</button>
