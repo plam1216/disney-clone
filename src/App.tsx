@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import { gql, GraphQLClient } from 'graphql-request'
 
-import { Video, Account, Platform } from '../graphql'
+import { Video, Account } from '../graphql'
 
 import VideoPreview from './Pages/VideoPreview/VideoPreview';
 import Home from './Pages/Home/Home';
@@ -41,7 +41,7 @@ function App() {
 
     const query = gql`
       query {
-        videos {
+        videos (first: 200) {
           id,
           createdAt,
           title,
@@ -87,16 +87,18 @@ function App() {
 
   return (
     <>
-      <Navbar
-        account={account}
-      />
       <Switch>
         <Route
           exact path='/'
           render={(rp) =>
-            <Home
-              videos={videos}
-            />
+            <>
+              <Navbar
+                account={account}
+              />
+              <Home
+                videos={videos}
+              />
+            </>
           }
         />
 
@@ -110,9 +112,14 @@ function App() {
         <Route
           path='/:franchise'
           render={(rp) =>
-            <Franchise
-              videos={videos}
-            />
+            <>
+              <Navbar
+                account={account}
+              />
+              <Franchise
+                videos={videos}
+              />
+            </>
           }
         />
       </Switch>
