@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 
 import { gql, GraphQLClient } from 'graphql-request'
-import { Video } from '../../graphql';
+import { Video } from '../../../graphql';
 
-import changeToSeen from '../hooks/changeToSeen';
+import changeToSeen from '../../hooks/changeToSeen';
 
 
 interface RouteParams {
