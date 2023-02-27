@@ -32,7 +32,7 @@ const Home = ({ videos }: HomeProps) => {
                 }
             </div>
 
-            {/* <div className="video-feed">
+            <div className="video-feed">
                 <div className="franchise">
                     <Link to="/disney">
                         <img src={disneyLogo} alt="disney"/>
@@ -55,7 +55,7 @@ const Home = ({ videos }: HomeProps) => {
                         <img src={starWarsLogo} alt="star-wars"/>
                     </Link>
                 </div>
-            </div> */}
+            </div>
 
             <Section genre={"recommended"} videos={getUnseenVideos(videos)} />
             <Section genre={"classic"} videos={filterVideoByGenre(videos, "classic")} />

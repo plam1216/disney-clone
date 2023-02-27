@@ -7,9 +7,10 @@ import { gql, GraphQLClient } from 'graphql-request'
 
 import { Video, Account, Platform } from '../graphql'
 
-import VideoPreview from './VideoPreview/VideoPreview';
-import Home from './Components/Pages/Home/Home';
+import VideoPreview from './Pages/VideoPreview/VideoPreview';
+import Home from './Pages/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
+import Franchise from './Pages/Franchise/Franchise';
 
 const url: string = process.env.REACT_APP_GRAPH_CMS_ENDPOINT!
 const token: string = process.env.REACT_APP_GRAPH_CMS_TOKEN!
@@ -86,7 +87,7 @@ function App() {
 
   return (
     <>
-      <Navbar 
+      <Navbar
         account={account}
       />
       <Switch>
@@ -106,6 +107,14 @@ function App() {
           }
         />
 
+        <Route
+          path='/:franchise'
+          render={(rp) =>
+            <Franchise
+              videos={videos}
+            />
+          }
+        />
       </Switch>
     </>
   );
