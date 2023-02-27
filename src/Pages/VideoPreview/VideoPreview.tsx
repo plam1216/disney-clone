@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
+import { ArrowLeftCircle, Play } from 'react-bootstrap-icons';
 
 import { gql, GraphQLClient } from 'graphql-request'
 import { Video } from '../../../graphql';
@@ -82,20 +85,27 @@ const VideoPreview = () => {
   return (
     <>
       {/* not watching, shows title screen */}
-      {!watching && <img className="video-image" src={videoData.thumbnail.url} alt={videoData.title} />}
-      {!watching && <div className="info">
-        <p>{videoData.tags.join(', ').toUpperCase()}</p>
-        <p>{videoData.description}</p>
+      {!watching &&
+        <>
+          <img className="video-image" src={videoData.thumbnail.url} alt={videoData.title} />
 
-        <a href="/">Go Back</a>
-        <button
-          className={"video-overlay"}
-          onClick={() => {
-            changeToSeen(slug)
-            watching ? setWatching(false) : setWatching(true)
-          }}
-        >PLAY</button>
-      </div>
+          <Link to='/'>
+            <ArrowLeftCircle className="back-btn" size={25} />
+          </Link>
+
+          <div className="info">
+            <h2 style={{ margin: '10px 0 5px 0' }}>{videoData.title.toUpperCase()}</h2>
+            <h5 style={{ margin: 0 }}>{videoData.tags.join(', ').toUpperCase()}</h5>
+            <p>{videoData.description}</p>
+
+            <Play size={40}
+              onClick={() => {
+                changeToSeen(slug)
+                watching ? setWatching(false) : setWatching(true)
+              }}
+            />
+          </div>
+        </>
       }
 
       {/* watching === true; video plays */}
