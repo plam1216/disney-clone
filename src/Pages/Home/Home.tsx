@@ -24,9 +24,18 @@ const Home = ({ videos }: HomeProps) => {
     return (
         <div className="app">
             <div className="main-video">
+                <div className="description">
+                    <h1 style={{ margin: 0 }}>{randomVideo?.title.toUpperCase()}</h1>
+
+                    <p>
+                        {randomVideo?.description}
+                    </p>
+                </div>
                 {randomVideo?.thumbnail !== undefined
                     ?
-                    <img src={randomVideo.thumbnail.url} alt={randomVideo.title} />
+                    <div className="thumbnail">
+                        <img src={randomVideo.thumbnail.url} alt={randomVideo.title} />
+                    </div>
                     :
                     <></>
                 }
@@ -35,24 +44,24 @@ const Home = ({ videos }: HomeProps) => {
             <div className="video-feed">
                 <div className="franchise">
                     <Link to="/disney">
-                        <img src={disneyLogo} alt="disney"/>
+                        <img src={disneyLogo} alt="disney" />
                     </Link>
                 </div>
 
                 <div className="franchise">
                     <Link to="/pixar">
-                        <img src={pixarLogo} alt="pixar"/>
+                        <img src={pixarLogo} alt="pixar" />
                     </Link>
                 </div>
                 <div className="franchise">
                     <Link to="/marvel">
-                        <img src={marvelLogo} alt="marvel"/>
+                        <img src={marvelLogo} alt="marvel" />
                     </Link>
                 </div>
 
                 <div className="franchise">
                     <Link to="/star-wars">
-                        <img src={starWarsLogo} alt="star-wars"/>
+                        <img src={starWarsLogo} alt="star-wars" />
                     </Link>
                 </div>
             </div>
@@ -62,7 +71,7 @@ const Home = ({ videos }: HomeProps) => {
             <Section genre={"family"} videos={filterVideoByGenre(videos, "family")} />
             <Section genre={"action"} videos={filterVideoByGenre(videos, "action")} />
             <Section genre={"drama"} videos={filterVideoByGenre(videos, "drama")} />
-        </div>
+        </div >
     )
 }
 

@@ -22,20 +22,31 @@ a {
 
 .main-video {
   width: 100vw;
-  height: 30vh;
+  height: 40vh;
   overflow: hidden;
   position: relative;
   margin-bottom: 50px;
 }
 
+.description {
+  position: absolute;
+  width: 40%;
+  padding-top: 5%;
+  padding-left: 5%;
+  line-height: 2rem;
+}
+
 .main-video img {
-  /* object-fit: contain; */
-  /* height: 100%; */
-  width: 100%;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 3%;
 }
 
 .section {
   padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -69,10 +80,6 @@ a {
   z-index: 1;
 }
 
-/* .video-overlay {
-  position: absolute;
-} */
-
 .info-footer {
   height: 100vh;
 }
@@ -99,7 +106,6 @@ a {
   width: 20%;
   background-color: #1E2841;
   margin: 5px;
-  /* border: 2px solid red; */
   border-radius: 10px;
 }
 
@@ -114,4 +120,30 @@ a {
 
 .logo-wrapper {
   padding: 10px 30px;
+}
+
+
+@media screen and (max-width: 1440px) {
+  .main-video img {
+    /* height: 30vh; */
+    width: 60%;
+  }
+
+  .description {
+    width: 30%;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .main-video img {
+    width: 100%;
+    right: 0;
+  }
+
+  .description {
+    display: none;
+    width: 0%;
+  }
 }
