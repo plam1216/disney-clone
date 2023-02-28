@@ -98,12 +98,16 @@ const VideoPreview = () => {
             <h5 style={{ margin: 0 }}>{videoData.tags.join(', ').toUpperCase()}</h5>
             <p>{videoData.description}</p>
 
-            <Play size={40}
+            <div
               onClick={() => {
                 changeToSeen(slug)
                 watching ? setWatching(false) : setWatching(true)
               }}
-            />
+            >
+              <p className="play-btn">
+                PLAY
+              </p>
+            </div>
           </div>
         </>
       }
