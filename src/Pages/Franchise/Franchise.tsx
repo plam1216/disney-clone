@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import { Video } from '../../../graphql';
 
@@ -25,9 +26,20 @@ const Franchise = ({ videos }: FranchiseProps) => {
   return (
     <div>
       <div className="main-video">
-        {randomVideo?.thumbnail !== undefined
-          ?
-          <img src={randomVideo.thumbnail.url} alt={randomVideo.title} />
+        {randomVideo?.slug ?
+          <Link to={`/video/${randomVideo.slug}`}>
+            <div className="description">
+              <h1 style={{ margin: 0 }}>{randomVideo?.title.toUpperCase()}</h1>
+
+              <p>
+                {randomVideo?.description}
+              </p>
+            </div>
+
+            <div className="thumbnail">
+              <img src={randomVideo.thumbnail.url} alt={randomVideo.title} />
+            </div>
+          </Link>
           :
           <></>
         }
